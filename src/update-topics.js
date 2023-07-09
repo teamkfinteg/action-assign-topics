@@ -7,25 +7,7 @@ const core = require('@actions/core');
 const { Octokit } = require('@octokit/rest');
 const github = new Octokit({ auth: process.env.GITHUB_TOKEN });
 const { owner: orgName, repo:repoName } = github.rest.repos;
-const jsonPath = 'integration-manifest.json';
-
-
-async function readJSON(owner, repo, path) {
-  try {
-    const fileContents = await github.request('GET /repos/{owner}/{repo}/contents/{path}', {
-      owner: owner,
-      repo: repo,
-      path: path
-    })
-    let fc = fileContents.data.content;
-    let buff = new Buffer.from(fc, 'base64');
-    let text = buff.toString('ascii');
-    repoJSONProps = JSON.parse(text);
-  }
-  catch (err) {
-    console.log(path + ' not found.')
-  }
-}
+const jsonPath = core.getInput('input-file');
 
 async function getRepoTopics(owner, repo) {
   const response = await github.request("GET /repos/{owner}/{repo}/topics", {
@@ -60,7 +42,7 @@ function topicFromType(type) {
 }
 async function updateTopic(owner, repo, path) {
   try {
-    await readJSON(owner, repo, path);
+    const repoJSONProps = JSON.parse(fs.readFileSync(jsonPath));
     console.log(repoName);
     const t = topicFromType(repoJSONProps.integration_type)
     console.log('integration_type:' + repoJSONProps.integration_type)
