@@ -1,0 +1,23 @@
+name: Create Markdown Stub from manifest
+on: [push]
+
+jobs:
+  read_type:
+    runs-on: ubuntu-latest
+    name: A test job to read the integration_type from integration-manifest.json
+    steps:
+      # To use this repository's private action,
+      # you must check out the repository
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Read integration_type
+        id: read
+        uses: ./ # Uses an action in the root directory
+        with:
+          input-file: integration-manifest.json
+      - name: Display type
+        id: display
+        run: |
+          echo ${{ steps.read.output.dbg-out}}
+
+

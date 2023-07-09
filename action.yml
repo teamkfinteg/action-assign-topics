@@ -1,0 +1,13 @@
+name: 'Update Repository Topics'
+description: 'Use the integration manifest to assign default topics to repositories'
+inputs:
+  input-file: 
+    description: 'Integration Manifest with integration_type definition'
+    required: false
+    default: 'integration-manifest.json'
+outputs:
+  dbg-out: 
+    description: 'Debug output'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
