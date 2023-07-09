@@ -43,7 +43,6 @@ function topicFromType(type) {
 async function updateTopic(owner, repo, path) {
   try {
     const repoJSONProps = JSON.parse(fs.readFileSync(jsonPath));
-    console.log(repoName);
     const t = topicFromType(repoJSONProps.integration_type)
     console.log('integration_type:' + repoJSONProps.integration_type)
     console.log('Topic: ' + t)
