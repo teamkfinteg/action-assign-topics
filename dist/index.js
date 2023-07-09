@@ -9328,7 +9328,6 @@ const fs = __nccwpck_require__(7147);
 const core = __nccwpck_require__(2186);
 const { Octokit } = __nccwpck_require__(784);
 const github = new Octokit({ auth: process.env.GITHUB_TOKEN });
-console.log(`context: ${context}`);
 const { owner: orgName, repo:repoName } = github.rest.repos;
 const jsonPath = 'integration-manifest.json';
 
