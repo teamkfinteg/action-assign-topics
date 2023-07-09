@@ -6,7 +6,7 @@ const fs = require('fs');
 const core = require('@actions/core');
 const { Octokit, context } = require('@octokit/rest');
 const github = new Octokit({ auth: process.env.GITHUB_TOKEN });
-
+console.log(context)
 const { owner: orgName, repo:repoName } = context.repo;
 const jsonPath = 'integration-manifest.json';
 
