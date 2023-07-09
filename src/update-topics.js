@@ -5,7 +5,7 @@
 const fs = require('fs');
 const core = require('@actions/core');
 const { GitHub, context } = require('@octokit/rest');
-const github = new GitHub(process.env.GITHUB_TOKEN);
+const github = new GitHub({ auth: process.env.GITHUB_TOKEN });
 
 const { owner: orgName, repo:repoName } = context.repo;
 const jsonPath = 'integration-manifest.json';
