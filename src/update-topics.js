@@ -50,7 +50,7 @@ async function updateTopic(owner, repo, path) {
     const t = topicFromType(repoJSONProps.integration_type)
     console.log('integration_type:' + repoJSONProps.integration_type)
     console.log('Topic: ' + t)
-    getRepoTopics(orgName, repoName)
+    getRepoTopics(owner, repo)
       .then((repoTopics) => {
         console.log(repoTopics);
         if (!repoTopics.includes(t)) {

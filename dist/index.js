@@ -9511,8 +9511,8 @@ const { owner: orgName, repo: repoName } = github.rest.repos;
 
 async function getRepoTopics(owner, repo) {
   const response = await github.request("GET /repos/{owner}/{repo}/topics", {
-    owner,
-    repo
+    orgName,
+    repoName
   });
   const repoTopics = response.data.names;
   return repoTopics;
