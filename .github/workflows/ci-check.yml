@@ -8,6 +8,7 @@ jobs:
     steps:
       # To use this repository's private action,
       # you must check out the repository
+      # Temporarily public, testing in personal Org
       - name: Checkout
         uses: actions/checkout@v3
         env:
