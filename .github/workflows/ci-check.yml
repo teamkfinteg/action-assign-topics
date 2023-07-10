@@ -1,4 +1,4 @@
-name: Create Markdown Stub from manifest
+name: CI Testing Topic Update
 on: [push]
 
 jobs:
@@ -12,7 +12,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.TEST_ACTION_GH_PAT  }}
       - name: Read integration_type
         id: read
         uses: ./ # Uses an action in the root directory
