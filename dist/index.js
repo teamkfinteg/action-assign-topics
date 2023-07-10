@@ -9501,11 +9501,13 @@ var __webpack_exports__ = {};
 const fs = __nccwpck_require__(7147);
 const core = __nccwpck_require__(2186);
 const { Octokit } = __nccwpck_require__(784);
-const { owner: orgName, repo:repoName } = github.rest.repos;
-const jsonPath = core.getInput('input-file');
 
+const jsonPath = core.getInput('input-file');
 const token = core.getInput('repo-token');
+
 const github = new Octokit({ auth: token });
+const { owner: orgName, repo: repoName } = github.rest.repos;
+
 
 async function getRepoTopics(owner, repo) {
   const response = await github.request("GET /repos/{owner}/{repo}/topics", {

@@ -5,11 +5,13 @@
 const fs = require('fs');
 const core = require('@actions/core');
 const { Octokit } = require('@octokit/rest');
-const { owner: orgName, repo:repoName } = github.rest.repos;
-const jsonPath = core.getInput('input-file');
 
+const jsonPath = core.getInput('input-file');
 const token = core.getInput('repo-token');
+
 const github = new Octokit({ auth: token });
+const { owner: orgName, repo: repoName } = github.rest.repos;
+
 
 async function getRepoTopics(owner, repo) {
   const response = await github.request("GET /repos/{owner}/{repo}/topics", {
