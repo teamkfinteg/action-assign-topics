@@ -31,13 +31,14 @@ async function updateRepoTopics(owner, repo, names) {
       repo,
       names
     });
-    console.log(`response = ${response}`)
+    
     const repoTopics = response.data.names;
     return repoTopics;
 
   } catch (e) {
 
   }
+  console.log(`response = ${response}`)
 }
 
 function topicFromType(type) {
