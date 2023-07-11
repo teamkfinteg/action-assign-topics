@@ -16469,7 +16469,7 @@ async function updateTopic(owner, repo, path) {
     console.log(repoTopics);
     if (!repoTopics.includes(t)) {
       repoTopics.push(t);
-      console.log(repoTopics);
+      console.log(`Replacing topic.names with ${repoTopics}`);
       await github.request("PUT /repos/{owner}/{repo}/topics", {
         owner,
         repo,
