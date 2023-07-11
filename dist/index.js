@@ -16470,6 +16470,11 @@ async function updateTopic(owner, repo, path) {
     if (!repoTopics.includes(t)) {
       repoTopics.push(t);
       console.log(repoTopics);
+      await github.request("PUT /repos/{owner}/{repo}/topics", {
+        owner,
+        repo,
+        names: repoTopics
+      });
     }
   } catch (e) {
 
