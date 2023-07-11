@@ -5,6 +5,14 @@ inputs:
     description: 'Integration Manifest with integration_type definition'
     required: false
     default: 'integration-manifest.json'
+  repo-token: 
+    description: 'Integration Manifest with integration_type definition'
+    required: true
+  type-token-map: 
+    description: 'Integration Manifest with integration_type definition'
+    required: false
+    default: '[["orchestrator", "keyfactor-universal-orchestrator"],["windows-orchestrator", "keyfactor-orchestrator"],["ca-gateway", "keyfactor-cagateway"], ["pam", "keyfactor-pam"], ["api-client", "keyfactor-api-client"]]'
+
 outputs:
   dbg-out: 
     description: 'Debug output'
