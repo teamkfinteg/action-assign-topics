@@ -58,7 +58,7 @@ async function updateTopic(owner, repo, path) {
         if (!repoTopics.includes(t)) {
           repoTopics.push(t);
           console.log(repoTopics);
-          const response = github.request("PUT /repos/{owner}/{repo}/topics", {
+          const response = github.rest.repos.replaceAllTopics({
             owner,
             repo,
             names: repoTopics
