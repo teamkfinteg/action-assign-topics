@@ -31,7 +31,7 @@ async function updateRepoTopics(owner, repo, names) {
       repo,
       names
     });
-    console.log(response)
+    console.log(`response = ${response}`)
     const repoTopics = response.data.names;
     return repoTopics;
 
