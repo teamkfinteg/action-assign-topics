@@ -16471,7 +16471,7 @@ async function updateTopic(owner, repo, path) {
         if (!repoTopics.includes(t)) {
           repoTopics.push(t);
           console.log(repoTopics);
-          const response = github.rest.repos.replaceAllTopics({
+          const response = ghcontext.rest.repos.replaceAllTopics({
             owner,
             repo,
             names: repoTopics
