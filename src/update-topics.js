@@ -58,8 +58,8 @@ async function updateTopic(owner, repo, path) {
         if (!repoTopics.includes(t)) {
           repoTopics.push(t);
           console.log(repoTopics);
-          console.log(`Contents of ghcontext: ${JSON.stringify(ghcontext)}`)
-          const response = ghcontext.rest.repos.replaceAllTopics({
+          console.log(`Contents of ghcontext: ${JSON.stringify(ghcontext.context)}`)
+          const response = ghcontext.rest.replaceAllTopics({
             owner,
             repo,
             names: repoTopics
