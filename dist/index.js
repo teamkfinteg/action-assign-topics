@@ -16449,7 +16449,7 @@ async function updateRepoTopics(owner, repo, names) {
     return repoTopics;
 
   } catch (e) {
-
+    console.log(e.message)
   }
   console.log(`response = ${response}`)
 }
@@ -16489,7 +16489,7 @@ async function checkAndUpdateTopic(owner, repo, path) {
       await updateRepoTopics(owner, repo, '["my-own-test"]')
     }
   } catch (e) {
-
+    console.log(e.message)
     }
   }
 
