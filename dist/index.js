@@ -16444,6 +16444,7 @@ async function updateRepoTopics(owner, repo, names) {
       repo,
       names
     });
+    console.log(response)
     const repoTopics = response.data.names;
     return repoTopics;
 
