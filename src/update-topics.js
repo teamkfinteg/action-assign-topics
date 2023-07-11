@@ -25,7 +25,7 @@ async function getRepoTopics(owner, repo) {
 }
 async function updateRepoTopics(owner, repo, names) {
   console.log(`Replacing topic.names with ${names}`);
-  //try {
+  try {
   //  const response = await github.request("PUT /repos/{owner}/{repo}/topics", {
   //    owner,
   //    repo,
