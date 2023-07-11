@@ -16483,8 +16483,7 @@ async function checkAndUpdateTopic(owner, repo, path) {
     console.log(repoTopics);
     if (!repoTopics.includes(t)) {
       repoTopics.push(t);
-      consol
-      e.log(`Replacing topic.names with ${repoTopics}`);
+      console.log(`Replacing topic.names with ${repoTopics}`);
       await updateRepoTopics(owner, repo, 'my-own-test')
     }
   } catch (e) {
