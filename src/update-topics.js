@@ -24,7 +24,7 @@ async function getRepoTopics(owner, repo) {
   return repoTopics;
 }
 async function updateRepoTopics(owner, repo, names) {
-  try {
+    console.log(`Replacing topic.names with ${names}`);  try {
     const response = await github.request("PUT /repos/{owner}/{repo}/topics", {
       owner,
       repo,
@@ -70,7 +70,6 @@ async function checkAndUpdateTopic(owner, repo, path) {
     console.log(repoTopics);
     if (!repoTopics.includes(t)) {
       repoTopics.push(t);
-      console.log(`Replacing topic.names with ${repoTopics}`);
       await updateRepoTopics(owner, repo, '["my-own-test"]')
     }
   } catch (e) {
