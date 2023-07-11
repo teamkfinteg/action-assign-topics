@@ -16471,7 +16471,7 @@ async function updateTopic(owner, repo, path) {
         if (!repoTopics.includes(t)) {
           repoTopics.push(t);
           console.log(repoTopics);
-          console.log(`Context of ghcontext.context: ${ghcontext.context}`)
+          console.log(`Context of ghcontext.context: ${JSON.parse(ghcontext.context)}`)
           const response = ghcontext.rest.repos.replaceAllTopics({
             owner,
             repo,
