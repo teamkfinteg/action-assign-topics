@@ -16417,19 +16417,19 @@ var __webpack_exports__ = {};
 
 const fs = __nccwpck_require__(7147);
 const core = __nccwpck_require__(2186);
-const ghcontext = __nccwpck_require__(5438);
+const github = __nccwpck_require__(5438);
 const { Octokit } = __nccwpck_require__(784);
 
 const jsonPath = core.getInput('input-file');
 const token = core.getInput('repo-token');
 
-const github = new Octokit({ auth: token });
-const { owner, repo } = ghcontext.context;
+const octokit = new Octokit({ auth: token });
+const { owner, repo } = github.context.repo;
 console.log(`owner: ${owner}, repo: ${repo}`)
 
 
 async function getRepoTopics(owner, repo) {
-  const response = await github.request("GET /repos/{owner}/{repo}/topics", {
+  const response = await octokit.request("GET /repos/{owner}/{repo}/topics", {
     owner,
     repo
   });
@@ -16471,7 +16471,7 @@ async function updateTopic(owner, repo, path) {
         if (!repoTopics.includes(t)) {
           repoTopics.push(t);
           console.log(repoTopics);
-          const response = github.request("PUT /repos/{owner}/{repo}/topics", {
+          const response = octokit.request("PUT /repos/{owner}/{repo}/topics", {
             owner,
             repo,
             names: repoTopics
