@@ -47,31 +47,13 @@ function topicFromType(type) {
   return topic;
 }
 async function updateTopic(owner, repo, path) {
-  try {
     const repoJSONProps = JSON.parse(fs.readFileSync(jsonPath));
     const t = topicFromType(repoJSONProps.integration_type)
     console.log('integration_type:' + repoJSONProps.integration_type)
     console.log('Topic: ' + t)
-    getRepoTopics(owner, repo)
-      .then((repoTopics) => {
-        console.log(repoTopics);
-        if (!repoTopics.includes(t)) {
-          repoTopics.push(t);
-          console.log(repoTopics);
-          console.log(`Contents of context.payload.repository: ${JSON.stringify(ghcontext.context.payload.repository)}`)
-          const response = github.request("PUT /repos/{owner}/{repo}/topics", {
-            owner,
-            repo,
-            names: repoTopics
-          });
-        }
-        core.setOutput('dbg-out', repoTopics);
-      })
-      .catch((err) => console.error(err));
+    const repoTopics = await getRepoTopics(owner, repo)
+    console.log(repoTopics);
   }
-  catch (err) {
-    console.log(repo + ' not found.')
-  }
-}
+
 
 updateTopic(owner, repo, jsonPath)
