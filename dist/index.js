@@ -16436,6 +16436,20 @@ async function getRepoTopics(owner, repo) {
   const repoTopics = response.data.names;
   return repoTopics;
 }
+async function updateRepoTopics(owner, repo, names) {
+  try {
+    const response = await github.request("PUT /repos/{owner}/{repo}/topics", {
+      owner,
+      repo,
+      names
+    });
+    const repoTopics = response.data.names;
+    return repoTopics;
+
+  } catch (e) {
+
+  }
+}
 
 function topicFromType(type) {
   switch (type) {
@@ -16459,7 +16473,7 @@ function topicFromType(type) {
   }
   return topic;
 }
-async function updateTopic(owner, repo, path) {
+async function checkAndUpdateTopic(owner, repo, path) {
   try {
     const repoJSONProps = JSON.parse(fs.readFileSync(jsonPath));
     const t = topicFromType(repoJSONProps.integration_type)
@@ -16470,11 +16484,7 @@ async function updateTopic(owner, repo, path) {
     if (!repoTopics.includes(t)) {
       repoTopics.push(t);
       console.log(`Replacing topic.names with ${repoTopics}`);
-      await github.request("PUT /repos/{owner}/{repo}/topics", {
-        owner,
-        repo,
-        names: repoTopics
-      });
+      updateRepoTopics(owner, repo, repoTopics)
     }
   } catch (e) {
 
@@ -16482,7 +16492,7 @@ async function updateTopic(owner, repo, path) {
   }
 
 
-updateTopic(owner, repo, jsonPath)
+updcheckAndUpdateTopicateTopic(owner, repo, jsonPath)
 
 })();
 
