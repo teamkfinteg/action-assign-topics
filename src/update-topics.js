@@ -32,7 +32,7 @@ async function updateRepoTopics(owner, repo, names) {
       repo,
       names
     });
-    //const repoTopics = response.data.names;
+    const repoTopics = response.data.names;
 
   } catch (e) {
     console.log(e.message)
@@ -71,7 +71,7 @@ async function checkAndUpdateTopic(owner, repo, path) {
     console.log(repoTopics);
     if (!repoTopics.includes(t)) {
       repoTopics.push(t);
-      await updateRepoTopics(owner, repo, '["my-own-test"]')
+      await updateRepoTopics(owner, repo, repoTopics)
     }
   } catch (e) {
 //    console.log(e.message)
