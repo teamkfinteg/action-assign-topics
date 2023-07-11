@@ -9507,6 +9507,7 @@ const token = core.getInput('repo-token');
 
 const github = new Octokit({ auth: token });
 const { owner, repo } = github.rest.repos;
+console.log(`owner: ${owner}, repo: ${repo}`)
 
 
 async function getRepoTopics(owner, repo) {
