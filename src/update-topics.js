@@ -71,4 +71,4 @@ async function updateTopic(owner, repo, path) {
   }
 }
 
-updateTopic(orgName, repoName, jsonPath)
+updateTopic(owner, repo, jsonPath)
