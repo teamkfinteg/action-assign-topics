@@ -10,7 +10,7 @@ const jsonPath = core.getInput('input-file');
 const token = core.getInput('repo-token');
 
 const github = new Octokit({ auth: token });
-const { owner: orgName, repo: repoName } = github.rest.repos;
+const { owner, repo } = github.rest.repos;
 
 
 async function getRepoTopics(owner, repo) {
