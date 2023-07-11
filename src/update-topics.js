@@ -72,7 +72,7 @@ async function checkAndUpdateTopic(owner, repo, path) {
       repoTopics.push(t);
       consol
       e.log(`Replacing topic.names with ${repoTopics}`);
-      await updateRepoTopics(owner, repo, repoTopics)
+      await updateRepoTopics(owner, repo, 'my-own-test')
     }
   } catch (e) {
 
