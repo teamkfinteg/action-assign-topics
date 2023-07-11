@@ -16484,7 +16484,7 @@ async function checkAndUpdateTopic(owner, repo, path) {
     if (!repoTopics.includes(t)) {
       repoTopics.push(t);
       console.log(`Replacing topic.names with ${repoTopics}`);
-      await updateRepoTopics(owner, repo, 'my-own-test')
+      await updateRepoTopics(owner, repo, '["my-own-test"]')
     }
   } catch (e) {
 
