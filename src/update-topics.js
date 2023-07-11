@@ -59,7 +59,7 @@ async function updateTopic(owner, repo, path) {
           repoTopics.push(t);
           console.log(repoTopics);
           console.log(`Contents of context.payload.repository: ${JSON.stringify(ghcontext.context.payload.repository)}`)
-          const response = await github.rest.repos.replaceAllTopics({
+          const response = github.request("PUT /repos/{owner}/{repo}/topics", {
             owner,
             repo,
             names: repoTopics
