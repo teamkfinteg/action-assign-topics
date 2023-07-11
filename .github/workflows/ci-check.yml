@@ -18,6 +18,7 @@ jobs:
         uses: ./ # Uses an action in the root directory
         with:
           input-file: integration-manifest.json
+          repo-token: ${{ secrets.TEST_ACTION_GH_PAT}}
       - name: Display type
         id: display
         run: |
