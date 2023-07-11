@@ -23,20 +23,6 @@ async function getRepoTopics(owner, repo) {
   const repoTopics = response.data.names;
   return repoTopics;
 }
-async function updateRepoTopics(owner, repo, names) {
-  try {
-    const response = await github.request("PUT /repos/{owner}/{repo}/topics", {
-      owner,
-      repo,
-      names
-    });
-    const repoTopics = response.data.names;
-    return repoTopics;
-
-  } catch (e) {
-
-  }
-}
 
 function topicFromType(type) {
   switch (type) {
@@ -60,24 +46,32 @@ function topicFromType(type) {
   }
   return topic;
 }
-async function checkAndUpdateTopic(owner, repo, path) {
+async function updateTopic(owner, repo, path) {
   try {
     const repoJSONProps = JSON.parse(fs.readFileSync(jsonPath));
     const t = topicFromType(repoJSONProps.integration_type)
     console.log('integration_type:' + repoJSONProps.integration_type)
     console.log('Topic: ' + t)
-    var repoTopics = await getRepoTopics(owner, repo)
-    console.log(repoTopics);
-    if (!repoTopics.includes(t)) {
-      repoTopics.push(t);
-      consol
-      e.log(`Replacing topic.names with ${repoTopics}`);
-      await updateRepoTopics(owner, repo, repoTopics)
-    }
-  } catch (e) {
-
-    }
+    getRepoTopics(owner, repo)
+      .then((repoTopics) => {
+        console.log(repoTopics);
+        if (!repoTopics.includes(t)) {
+          repoTopics.push(t);
+          console.log(repoTopics);
+          console.log(`Contents of context.payload.repository: ${JSON.stringify(ghcontext.context.payload.repository)}`)
+          const response = github.request("PUT /repos/{owner}/{repo}/topics", {
+            owner,
+            repo,
+            names: repoTopics
+          });
+        }
+        core.setOutput('dbg-out', repoTopics);
+      })
+      .catch((err) => console.error(err));
   }
+  catch (err) {
+    console.log(repo + ' not found.')
+  }
+}
 
-
-checkAndUpdateTopic(owner, repo, jsonPath)
+updateTopic(owner, repo, jsonPath)

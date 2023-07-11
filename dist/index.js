@@ -16483,8 +16483,9 @@ async function checkAndUpdateTopic(owner, repo, path) {
     console.log(repoTopics);
     if (!repoTopics.includes(t)) {
       repoTopics.push(t);
-      console.log(`Replacing topic.names with ${repoTopics}`);
-      updateRepoTopics(owner, repo, repoTopics)
+      consol
+      e.log(`Replacing topic.names with ${repoTopics}`);
+      await updateRepoTopics(owner, repo, repoTopics)
     }
   } catch (e) {
 
@@ -16492,7 +16493,7 @@ async function checkAndUpdateTopic(owner, repo, path) {
   }
 
 
-updcheckAndUpdateTopicateTopic(owner, repo, jsonPath)
+checkAndUpdateTopic(owner, repo, jsonPath)
 
 })();
 
