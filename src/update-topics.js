@@ -4,14 +4,14 @@
 
 const fs = require('fs');
 const core = require('@actions/core');
-// const ghcontext = require('@actions/github');
+const ghcontext = require('@actions/github');
 const { Octokit } = require('@octokit/rest');
 
 const jsonPath = core.getInput('input-file');
 const token = core.getInput('repo-token');
 
 const github = new Octokit({ auth: token });
-const { owner, repo } = github.context;
+const { owner, repo } = ghcontext.context;
 console.log(`owner: ${owner}, repo: ${repo}`)
 
 
