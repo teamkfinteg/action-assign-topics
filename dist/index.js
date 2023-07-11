@@ -9500,13 +9500,14 @@ var __webpack_exports__ = {};
 
 const fs = __nccwpck_require__(7147);
 const core = __nccwpck_require__(2186);
+// const ghcontext = require('@actions/github');
 const { Octokit } = __nccwpck_require__(784);
 
 const jsonPath = core.getInput('input-file');
 const token = core.getInput('repo-token');
 
 const github = new Octokit({ auth: token });
-const { owner, repo } = github.rest.repos;
+const { owner, repo } = github.context;
 console.log(`owner: ${owner}, repo: ${repo}`)
 
 
