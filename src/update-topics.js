@@ -67,7 +67,10 @@ function topicFromType(type) {
 async function checkAndUpdateTopic(owner, repo, path) {
   console.log(`Attempting to update topic for ${repo}`)
   try {
+    console.log(`Attempting to read: ${jsonPath}`)
     const repoJSONProps = JSON.parse(fs.readFileSync(jsonPath));
+    console.log(`repoJSONProps: ${repoJSONProps}`)
+    console.log(`Calling out to topicFromType function with ${repoJSONProps.integration_type}`)
     const t = topicFromType(repoJSONProps.integration_type)
     console.log('integration_type:' + repoJSONProps.integration_type)
     console.log('Topic: ' + t)
