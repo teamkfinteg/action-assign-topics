@@ -16494,7 +16494,7 @@ async function checkAndUpdateTopic(owner, repo, path) {
       await updateRepoTopics(owner, repo, repoTopics)
     }
   } catch (e) {
-//    console.log(e.message)
+    console.log(e.message)
     }
   }
 

@@ -4,7 +4,7 @@ inputs:
   input-file: 
     description: 'Integration Manifest with integration_type definition'
     required: false
-    default: 'integration-manifest.json'
+    default: './integration-manifest.json'
   repo-token: 
     description: 'Integration Manifest with integration_type definition'
     required: true
