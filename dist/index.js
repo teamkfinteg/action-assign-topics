@@ -16453,6 +16453,7 @@ async function updateRepoTopics(owner, repo, names) {
 }
 
 function topicFromType(type) {
+  console.log(`Determining topic from type: ${type}`)
   switch (type) {
     case 'orchestrator':
       topic = 'keyfactor-universal-orchestrator'
@@ -16471,10 +16472,13 @@ function topicFromType(type) {
       break;
     default:
       console.log(`Unknwon type: ` + repoJSONProps.integration_type);
+      topic = 'unknown'
   }
+  console.log(`topic: ${topic}`)
   return topic;
 }
 async function checkAndUpdateTopic(owner, repo, path) {
+  console.log(`Attempting to update topic for ${repo}`)
   try {
     const repoJSONProps = JSON.parse(fs.readFileSync(jsonPath));
     const t = topicFromType(repoJSONProps.integration_type)
